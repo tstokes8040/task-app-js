@@ -1,2 +1,7 @@
-# task-app-js
-Tasky Application in pure JavaScript using local storage.
+# Tasky
+The Tasky application is built in pure JavaScript using local storage.
+
+_Because we do Tasky things._
+
+**Version:** .01
+**Releast Notes:** N/A
