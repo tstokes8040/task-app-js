@@ -1,3 +1,30 @@
-.task-list .task {
-  color: blue;
+body {
+  background: #1874cd;
+  font-family: 'Roboto', sans-serif;
+}
+h1 {
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align: center;
+  color: #fff;
+  font-size: 3em;
+}
+h1,
+h2 {
+  margin: 0;
+}
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.white-box {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  min-height: 200px;
+}
+.task-list h2 {
+  color: #1874cd;
+  font-size: 1.4em;
 }
