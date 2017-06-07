@@ -3,6 +3,9 @@ The Tasky application is built in pure JavaScript using local storage.
 
 _Because we do Tasky things._
 
-**Version:** .5.5
+**Version:** .6
 
-**Release Notes:** Currently adds tasks to local storage and outputs the tasks in local storage.
+**Release Notes:**
+
+- Added CSS
+- Currently adds tasks to local storage and outputs the tasks in local storage.
