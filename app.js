@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
   function getAllTasks () {
     for (let i = 0; i < localStorage.length; i++) {
       let taskName = localStorage.key(i);
-      taskList.insertAdjacentHTML('beforeend','<p class="task">' + taskName + '</p>');
+      taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${taskName}</p>`);
     }
   }
 
