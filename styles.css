@@ -12,6 +12,9 @@ h1,
 h2 {
   margin: 0;
 }
+p {
+  margin: 0;
+}
 .content {
   position: absolute;
   left: 50%;
@@ -20,11 +23,38 @@ h2 {
 }
 .white-box {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 20px;
   min-height: 200px;
 }
-.task-list h2 {
+.white-box h2 {
   color: #1874cd;
   font-size: 1.4em;
+}
+.task-list {
+  font-family: 'Gloria Hallelujah', cursive;
+  margin: 20px 0 20px;
+  font-size: 1.2em;
+}
+.add-task .task-name {
+  display: block;
+  margin: 10px 0;
+}
+.add-task .task-name input {
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+}
+.add-task .add-task-button {
+  -webkit-appearance: none;
+  border-radius: 0;
+  border: 0;
+  background: #1874cd;
+  color: #fff;
+  padding: 5px 10px;
+  height: 30px;
+}
+.add-task .add-task-button:hover {
+  cursor: pointer;
 }
