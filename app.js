@@ -1,7 +1,7 @@
 window.addEventListener('load', function() {
   const $ = document.querySelector.bind(document);
-  const addButton = $('.add-task-button');
-  const deleteButton = $('.delete-button');
+  const addButton = $('.add-task.button');
+  const deleteAllButton = $('.delete-all');
   const taskList = $('.task-list');
   let allTasks = [];
 
@@ -10,17 +10,17 @@ window.addEventListener('load', function() {
     addTask();
   });
 
+  //Listen for the delete button
+  deleteAllButton.addEventListener('click', function (){
+    deleteAllTasks();
+  });
+
   //Add a task when enter key is pressed
   document.addEventListener('keydown', function (event) {
     const keyName = event.key;
     if (keyName == 'Enter' && $('.task-name input').value != "") {
       addTask();
     }
-  });
-
-  //Listen for the delete button
-  deleteButton.addEventListener('click', function (){
-    deleteTask();
   });
 
   //Task class
@@ -54,15 +54,16 @@ window.addEventListener('load', function() {
     }
   }
 
-  //Delete a task
-  function deleteTask () {
-
+  //Delete all tasks
+  function deleteAllTasks () {
+    localStorage.clear();
+    location.reload();
   }
 
   //Output the task
   function outputHTML (task) {
     const outputTask = task;
-    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}<button class="delete-button" type="button">Delete</button></p>`);
+    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}<button class="delete button" type="button">Delete</button></p>`);
   }
 
   getAllTasks();
