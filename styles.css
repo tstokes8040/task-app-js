@@ -31,16 +31,7 @@ p {
   color: #1874cd;
   font-size: 1.4em;
 }
-.task-list {
-  font-family: 'Gloria Hallelujah', cursive;
-  margin: 20px 0 20px;
-  font-size: 1.2em;
-}
-.task-list .task {
-  margin-bottom: 10px;
-}
-.task-list .task .delete-button {
-  margin-left: 15px;
+.button {
   -webkit-appearance: none;
   border-radius: 0;
   border: 0;
@@ -49,8 +40,19 @@ p {
   padding: 5px 10px;
   height: 30px;
 }
-.task-list .task .delete-button:hover {
+.button:hover {
   cursor: pointer;
+}
+.task-list {
+  font-family: 'Gloria Hallelujah', cursive;
+  margin: 20px 0 20px;
+  font-size: 1.2em;
+}
+.task-list .task {
+  margin-bottom: 10px;
+}
+.task-list .task .delete.button {
+  margin-left: 15px;
 }
 .add-task .task-name {
   display: block;
@@ -61,16 +63,4 @@ p {
   height: 30px;
   border-radius: 3px;
   border: 1px solid #d3d3d3;
-}
-.add-task .add-task-button {
-  -webkit-appearance: none;
-  border-radius: 0;
-  border: 0;
-  background: #1874cd;
-  color: #fff;
-  padding: 5px 10px;
-  height: 30px;
-}
-.add-task .add-task-button:hover {
-  cursor: pointer;
 }
