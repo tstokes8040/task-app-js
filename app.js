@@ -1,6 +1,9 @@
 window.addEventListener('load', function() {
-  const addButton = document.querySelector('.add-task-button');
-  const taskList = document.querySelector('.task-list');
+  const $ = document.querySelector.bind(document);
+  const addButton = $('.add-task-button');
+  const taskList = $('.task-list');
+  let allTasks = [];
+
 
   //Add new task with user clicks add button
   addButton.addEventListener('click', function (){
@@ -10,28 +13,45 @@ window.addEventListener('load', function() {
   //Add a task when enter key is pressed
   document.addEventListener('keydown', function (event) {
     const keyName = event.key;
-    if (keyName == 'Enter' && document.querySelector('.task-name input').value != "") {
+    if (keyName == 'Enter' && $('.task-name input').value != "") {
       addTask();
     }
   });
 
   //Task class
-  //COMING SOON
+  class Task {
+    constructor(name, trashed) {
+      this.name = name;
+      this.trashed = trashed;
+    }
+  }
 
   //Add a new task to local storage
   function addTask() {
-    let taskName = document.querySelector('.task-name input').value;
-    localStorage.setItem(taskName, 'false');
-    taskList.insertAdjacentHTML('beforeend','<p class="task">' + taskName + '</p>');
+    const taskName = $('.task-name input').value;
+    const theTask = new Task(taskName, false);
+    allTasks.push(theTask);
+    localStorage.setItem('Tasks', JSON.stringify(allTasks));
+    outputHTML(taskName);
     document.querySelector('.task-name input').value = "";
   }
 
   //Get all tasks from local storage
   function getAllTasks () {
-    for (let i = localStorage.length - 1 ; i >= 0; i--) {
-      let taskName = localStorage.key(i);
-      taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${taskName}</p>`);
+    if (localStorage.length > 0) {
+      const tasks = JSON.parse(localStorage.getItem('Tasks'));
+      for (let i = 0; i < tasks.length; i++) {
+        let nextTask = new Task(tasks[i]);
+        let nextTaskName = tasks[i].name;
+        allTasks.push(nextTask);
+        outputHTML(nextTaskName);
+      }
     }
+  }
+
+  function outputHTML (task) {
+    const outputTask = task;
+    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}</p>`);
   }
 
   getAllTasks();
