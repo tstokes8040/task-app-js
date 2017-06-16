@@ -36,6 +36,22 @@ p {
   margin: 20px 0 20px;
   font-size: 1.2em;
 }
+.task-list .task {
+  margin-bottom: 10px;
+}
+.task-list .task .delete-button {
+  margin-left: 15px;
+  -webkit-appearance: none;
+  border-radius: 0;
+  border: 0;
+  background: #1874cd;
+  color: #fff;
+  padding: 5px 10px;
+  height: 30px;
+}
+.task-list .task .delete-button:hover {
+  cursor: pointer;
+}
 .add-task .task-name {
   display: block;
   margin: 10px 0;
@@ -46,7 +62,6 @@ p {
   border-radius: 3px;
   border: 1px solid #d3d3d3;
 }
-
 .add-task .add-task-button {
   -webkit-appearance: none;
   border-radius: 0;

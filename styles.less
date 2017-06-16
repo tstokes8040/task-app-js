@@ -45,10 +45,28 @@ p {
   font-family: 'Gloria Hallelujah', cursive;
   margin: 20px 0 20px;
   font-size: 1.2em;
+
+  .task {
+    margin-bottom: 10px;
+
+    .delete-button {
+      margin-left: 15px;
+      -webkit-appearance: none;
+      border-radius: 0;
+      border: 0;
+      background: @color-main;
+      color: #fff;
+      padding: 5px 10px;
+      height: 30px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .add-task {
-  
+
   .task-name {
     display: block;
     margin: 10px 0;
