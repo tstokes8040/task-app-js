@@ -1,9 +1,9 @@
 window.addEventListener('load', function() {
   const $ = document.querySelector.bind(document);
   const addButton = $('.add-task-button');
+  const deleteButton = $('.delete-button');
   const taskList = $('.task-list');
   let allTasks = [];
-
 
   //Add new task with user clicks add button
   addButton.addEventListener('click', function (){
@@ -16,6 +16,11 @@ window.addEventListener('load', function() {
     if (keyName == 'Enter' && $('.task-name input').value != "") {
       addTask();
     }
+  });
+
+  //Listen for the delete button
+  deleteButton.addEventListener('click', function (){
+    deleteTask();
   });
 
   //Task class
@@ -33,7 +38,7 @@ window.addEventListener('load', function() {
     allTasks.push(theTask);
     localStorage.setItem('Tasks', JSON.stringify(allTasks));
     outputHTML(taskName);
-    document.querySelector('.task-name input').value = "";
+    $('.task-name input').value = "";
   }
 
   //Get all tasks from local storage
@@ -41,7 +46,7 @@ window.addEventListener('load', function() {
     if (localStorage.length > 0) {
       const tasks = JSON.parse(localStorage.getItem('Tasks'));
       for (let i = 0; i < tasks.length; i++) {
-        let nextTask = new Task(tasks[i]);
+        let nextTask = new Task(tasks[i].name, tasks[i].trashed);
         let nextTaskName = tasks[i].name;
         allTasks.push(nextTask);
         outputHTML(nextTaskName);
@@ -49,11 +54,16 @@ window.addEventListener('load', function() {
     }
   }
 
+  //Delete a task
+  function deleteTask () {
+
+  }
+
+  //Output the task
   function outputHTML (task) {
     const outputTask = task;
-    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}</p>`);
+    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}<button class="delete-button" type="button">Delete</button></p>`);
   }
 
   getAllTasks();
-
 });
