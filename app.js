@@ -7,7 +7,9 @@ window.addEventListener('load', function() {
 
   //Add new task with user clicks add button
   addButton.addEventListener('click', function (){
-    addTask();
+    if ($('.task-name input').value != "") {
+      addTask();
+    }
   });
 
   //Listen for the delete button
