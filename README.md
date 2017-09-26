@@ -11,7 +11,6 @@ _Because we do Tasky things._
 - Changed font of tasks
 - Changed list heading to My List
 
-**Requests:**
-- Create a task class to store the data better in local storage
+**Feature Requests:**
 - Adding a delete button
 - Adding a completed button
