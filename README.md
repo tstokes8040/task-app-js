@@ -9,4 +9,4 @@ _Because we do Tasky things._
 - Added max task length. New length is 100 characters
 
 **Feature Requests:**
-- Adding a completed button
+- Add a completed button
