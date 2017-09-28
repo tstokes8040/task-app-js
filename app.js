@@ -8,11 +8,13 @@ class Task {
   }
 }
 
+//When DOM content has loaded
 window.addEventListener('DOMContentLoaded', function() {
   const $ = document.querySelector.bind(document);
   const addButton = $('.add-task.button');
   const deleteAllButton = $('.delete-all');
   const taskList = $('.task-list');
+  const taskNameInput = $('.task-name input');
   let allTasks = [];
 
   //Add new task with user clicks add button
@@ -43,12 +45,16 @@ window.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
     outputHTML(theTask);
     $('.task-name input').value = "";
+    deleteButton(theTask.id);
+  }
 
-    const deleteButton = $(`[data-task-id="${theTask.id}"]`);
-    //Listen for the single delete button
+  //Add event handler for single delete button
+  function deleteButton (id) {
+    const taskID = id;
+    const deleteButton = $(`[data-task-id="${taskID}"]`);
     deleteButton.addEventListener('click', function (event) {
       event.preventDefault();
-      allTasks.splice(allTasks.indexOf(theTask.id), 1);
+      allTasks.splice(allTasks.indexOf(taskID), 1);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
       this.closest('.task').remove();
     });
@@ -62,6 +68,7 @@ window.addEventListener('DOMContentLoaded', function() {
         let nextTask = new Task(tasks[i].id, tasks[i].name, tasks[i].trashed);
         allTasks.push(nextTask);
         outputHTML(nextTask);
+        deleteButton(i);
       }
     }
   }
@@ -75,7 +82,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Output the task
   function outputHTML (task) {
-    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${task.name}<button id ="${task.id}" class="delete button" type="button" data-task-id="${task.id}"">Delete</button></p>`);
+    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${task.name}<button class="delete button" type="button" data-task-id="${task.id}">Delete</button></p>`);
   }
 
   getAllTasks();
