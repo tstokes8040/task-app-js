@@ -5,12 +5,8 @@ _Because we do Tasky things._
 
 **Recent Changes:**
 
-- Added ability to add a new task when the enter key is pressed
-- Added button and input box styles
-- Added Font Awesome
-- Changed font of tasks
-- Changed list heading to My List
+- Added single task delete button
+- Added max task length. New length is 100 characters
 
 **Feature Requests:**
-- Adding a delete button
 - Adding a completed button
