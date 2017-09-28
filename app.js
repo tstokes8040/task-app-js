@@ -12,7 +12,7 @@ window.addEventListener('load', function() {
     }
   });
 
-  //Listen for the delete button
+  //Listen for the delete ALL button
   deleteAllButton.addEventListener('click', function (){
     deleteAllTasks();
   });
@@ -27,7 +27,8 @@ window.addEventListener('load', function() {
 
   //Task class
   class Task {
-    constructor(name, trashed) {
+    constructor(id, name, trashed) {
+      this.id = id;
       this.name = name;
       this.trashed = trashed;
     }
@@ -35,12 +36,21 @@ window.addEventListener('load', function() {
 
   //Add a new task to local storage
   function addTask() {
+    let nextTaskID = allTasks.length;
     const taskName = $('.task-name input').value;
-    const theTask = new Task(taskName, false);
+    const theTask = new Task(nextTaskID, taskName, false);
     allTasks.push(theTask);
     localStorage.setItem('Tasks', JSON.stringify(allTasks));
-    outputHTML(taskName);
+    outputHTML(nextTaskID, taskName);
     $('.task-name input').value = "";
+
+    //Need to fix below
+    const deleteButton = document.querySelectorAll('.task button.delete')[nextTaskID];
+    //Listen for the single delete button
+    deleteButton.addEventListener('click', function (event) {
+      allTasks.splice(this.id,1);
+      location.reload();
+    });
   }
 
   //Get all tasks from local storage
@@ -48,10 +58,11 @@ window.addEventListener('load', function() {
     if (localStorage.length > 0) {
       const tasks = JSON.parse(localStorage.getItem('Tasks'));
       for (let i = 0; i < tasks.length; i++) {
-        let nextTask = new Task(tasks[i].name, tasks[i].trashed);
+        let nextTask = new Task(tasks[i].id, tasks[i].name, tasks[i].trashed);
+        let nextTaskID = tasks[i].id;
         let nextTaskName = tasks[i].name;
         allTasks.push(nextTask);
-        outputHTML(nextTaskName);
+        outputHTML(nextTaskID, nextTaskName);
       }
     }
   }
@@ -63,9 +74,10 @@ window.addEventListener('load', function() {
   }
 
   //Output the task
-  function outputHTML (task) {
+  function outputHTML (id, task) {
+    const outputID = id;
     const outputTask = task;
-    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}<button class="delete button" type="button">Delete</button></p>`);
+    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${outputTask}<button id ="${outputID}" class="delete button" type="button">Delete</button></p>`);
   }
 
   getAllTasks();
