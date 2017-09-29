@@ -28,7 +28,7 @@ p {
   padding: 20px;
   min-height: 200px;
   max-height: 500px;
-  overflow: scroll;
+  overflow: auto;
 }
 .white-box h2 {
   color: #1874cd;
