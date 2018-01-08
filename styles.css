@@ -46,6 +46,9 @@ p {
 .button:hover {
   cursor: pointer;
 }
+.button.delete-all {
+  margin-top: 10px;
+}
 .task-list {
   font-family: 'Gloria Hallelujah', cursive;
   margin: 20px 0 20px;
@@ -67,4 +70,5 @@ p {
   border-radius: 3px;
   border: 1px solid #d3d3d3;
   padding: 5px;
+  -webkit-appearance: none;
 }
