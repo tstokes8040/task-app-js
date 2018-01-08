@@ -66,9 +66,10 @@ p {
 }
 .add-task .task-name input {
   width: 100%;
-  height: 30px;
+  height: 40px;
   border-radius: 3px;
   border: 1px solid #d3d3d3;
   padding: 5px;
   -webkit-appearance: none;
+  font-size: 20px;
 }
