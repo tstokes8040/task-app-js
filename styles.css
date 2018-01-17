@@ -27,7 +27,7 @@ p {
   border-radius: 3px;
   padding: 20px;
   min-height: 200px;
-  max-height: 500px;
+  max-height: 600px;
   overflow: auto;
 }
 .white-box h2 {
@@ -50,14 +50,29 @@ p {
   margin-top: 10px;
 }
 .task-list {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Roboto', sans-serif;
   margin: 20px 0 20px;
   font-size: 1.2em;
+  border: 1px solid #000;
 }
 .task-list .task {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.task-list .task.even {
+  background: #dedede;
+}
+.task-list .task.odd {
+  background: #fff;
 }
 .task-list .task .delete.button {
+  margin-left: 15px;
+}
+.task-list .task .trashed {
+  vertical-align: middle;
   margin-left: 15px;
 }
 .task-list .task.is-trashed span {

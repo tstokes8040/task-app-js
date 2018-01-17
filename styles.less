@@ -1,12 +1,16 @@
 @color-main: #1874cd;
+@heading-font: 'Gloria Hallelujah', cursive;
+@main-font: 'Roboto', sans-serif;
+@color-even: #dedede;
+@color-odd: #fff;
 
 body {
   background: @color-main;
-  font-family: 'Roboto', sans-serif;
+  font-family: @main-font;
 }
 
 h1 {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: @heading-font;
   text-align: center;
   color: #fff;
   font-size: 3em;
@@ -33,7 +37,7 @@ p {
   border-radius: 3px;
   padding: 20px;
   min-height: 200px;
-  max-height: 500px;
+  max-height: 600px;
   overflow: auto;
 
   h2 {
@@ -59,14 +63,32 @@ p {
 }
 
 .task-list {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: @main-font;
   margin: 20px 0 20px;
   font-size: 1.2em;
+  border: 1px solid #000;
 
   .task {
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+
+    &.even {
+      background: @color-even;
+    }
+
+    &.odd {
+      background: @color-odd;
+    }
 
     .delete.button {
+      margin-left: 15px;
+    }
+
+    .trashed {
+      vertical-align: middle;
       margin-left: 15px;
     }
 
