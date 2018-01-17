@@ -70,12 +70,12 @@ window.addEventListener('DOMContentLoaded', function () {
         trashed.addEventListener('change', function () {
             if (this.checked) {
                 allTasks[taskID].trashed = true;
-                trashed.parentElement.classList.toggle("is-trashed");
+                trashed.parentElement.parentElement.classList.toggle("is-trashed");
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
             }
             else {
                 allTasks[taskID].trashed = false;
-                trashed.parentElement.classList.toggle("is-trashed");
+                trashed.parentElement.parentElement.classList.toggle("is-trashed");
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
             }
         });
