@@ -45,18 +45,38 @@ window.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
     outputHTML(theTask);
     $('.task-name input').value = "";
+    //Adding event handler for the new delete and trashed buttons
     deleteButton(theTask.id);
+    trashed(theTask.id);
   }
 
   //Add event handler for single delete button
   function deleteButton (id) {
     const taskID = id;
-    const deleteButton = $(`[data-task-id="${taskID}"]`);
+    const deleteButton = $(`[data-delete-task-id="${taskID}"]`);
     deleteButton.addEventListener('click', function (event) {
       event.preventDefault();
       allTasks.splice(allTasks.indexOf(taskID), 1);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
       this.closest('.task').remove();
+    });
+  }
+
+  //Add event handler for single mark done checkbox
+  function trashed (id) {
+    const taskID = id;
+    const trashed = $(`[data-trashed-task-id="${taskID}"]`);
+    trashed.addEventListener('change', function (event) {
+      if(this.checked) {
+        allTasks[taskID].trashed = true;
+        trashed.parentElement.classList.toggle("istrashed");
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
+      }
+      else {
+        allTasks[taskID].trashed = false;
+        trashed.parentElement.classList.toggle("istrashed");
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
+      }
     });
   }
 
@@ -68,7 +88,9 @@ window.addEventListener('DOMContentLoaded', function() {
         let nextTask = new Task(tasks[i].id, tasks[i].name, tasks[i].trashed);
         allTasks.push(nextTask);
         outputHTML(nextTask);
+        //Adding event handler for the new delete and trashed buttons
         deleteButton(i);
+        trashed(i);
       }
     }
   }
@@ -82,7 +104,12 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Output the task
   function outputHTML (task) {
-    taskList.insertAdjacentHTML(`beforeend`, `<p class="task">${task.name}<button class="delete button" type="button" data-task-id="${task.id}">Delete</button></p>`);
+    if(task.trashed == true) {
+      taskList.insertAdjacentHTML(`beforeend`, `<p class="task istrashed"><span>${task.name}</span> <input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox" checked> <button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
+    }
+    else {
+      taskList.insertAdjacentHTML(`beforeend`, `<p class="task"><span>${task.name}</span> <input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox"> <button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
+    }
   }
 
   getAllTasks();
