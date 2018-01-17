@@ -60,6 +60,9 @@ p {
 .task-list .task .delete.button {
   margin-left: 15px;
 }
+.task-list .task.is-trashed span {
+  text-decoration: line-through;
+}
 .add-task .task-name {
   display: block;
   margin: 10px 0;
