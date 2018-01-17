@@ -106,10 +106,20 @@ window.addEventListener('DOMContentLoaded', function () {
     //Output the task
     function outputHTML(task) {
         if (task.trashed) {
-            taskList.insertAdjacentHTML(`beforeend`, `<p class="task is-trashed"><span>${task.name}</span><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox" checked><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
+            if (task.id % 2 === 0) {
+                taskList.insertAdjacentHTML(`beforeend`, `<div class="task is-trashed even"><span>${task.name}</span><div class="actions"><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox" checked><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></div></div>`);
+            }
+            else {
+                taskList.insertAdjacentHTML(`beforeend`, `<div class="task is-trashed odd"><span>${task.name}</span><div class="actions"><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox" checked><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></div></div>`);
+            }
         }
         else {
-            taskList.insertAdjacentHTML(`beforeend`, `<p class="task"><span>${task.name}</span><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox"><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
+            if (task.id % 2 === 0) {
+                taskList.insertAdjacentHTML(`beforeend`, `<div class="task even"><span>${task.name}</span><div class="actions"><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox"><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></div></div>`);
+            }
+            else {
+                taskList.insertAdjacentHTML(`beforeend`, `<div class="task odd"><span>${task.name}</span><div class="actions"><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox"><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></div></div>`);
+            }
         }
     }
 
