@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Add new task with user clicks add button
   addButton.addEventListener('click', function (){
-    if ($('.task-name input').value !== '') {
+    if (taskNameInput.value !== '') {
       addTask();
     }
   });
@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Add a task when enter key is pressed
   document.addEventListener('keydown', function (event) {
-    if (event.key == 'Enter' && $('.task-name input').value !== '') {
+    if (event.key === 'Enter' && $('.task-name input').value !== '') {
       addTask();
     }
   });
@@ -39,7 +39,6 @@ window.addEventListener('DOMContentLoaded', function() {
   //Add a new task to local storage
   function addTask() {
     let nextTaskID = allTasks.length;
-    const taskName = $('.task-name input').value;
     const theTask = new Task(nextTaskID, taskName, false);
     allTasks.push(theTask);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
@@ -66,15 +65,15 @@ window.addEventListener('DOMContentLoaded', function() {
   function trashed (id) {
     const taskID = id;
     const trashed = $(`[data-trashed-task-id="${taskID}"]`);
-    trashed.addEventListener('change', function (event) {
+    trashed.addEventListener('change', function () {
       if(this.checked) {
         allTasks[taskID].trashed = true;
-        trashed.parentElement.classList.toggle("istrashed");
+        trashed.parentElement.classList.toggle("is-trashed");
         localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
       }
       else {
         allTasks[taskID].trashed = false;
-        trashed.parentElement.classList.toggle("istrashed");
+        trashed.parentElement.classList.toggle("is-trashed");
         localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
       }
     });
@@ -104,11 +103,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
   //Output the task
   function outputHTML (task) {
-    if(task.trashed == true) {
-      taskList.insertAdjacentHTML(`beforeend`, `<p class="task istrashed"><span>${task.name}</span> <input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox" checked> <button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
+    if(task.trashed) {
+      taskList.insertAdjacentHTML(`beforeend`, `<p class="task is-trashed"><span>${task.name}</span><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox" checked><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
     }
     else {
-      taskList.insertAdjacentHTML(`beforeend`, `<p class="task"><span>${task.name}</span> <input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox"> <button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
+      taskList.insertAdjacentHTML(`beforeend`, `<p class="task"><span>${task.name}</span><input class="trashed" id="checkBox" data-trashed-task-id="${task.id}" type="checkbox"><button class="delete button" type="button" data-delete-task-id="${task.id}">Delete</button></p>`);
     }
   }
 
